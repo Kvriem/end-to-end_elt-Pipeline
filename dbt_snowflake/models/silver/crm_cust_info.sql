@@ -11,7 +11,7 @@ WITH raw_data AS (
 
 transformed_data AS (
     SELECT
-        cst_id AS customer_id,
+        distinct(cst_id) AS customer_id,
         cst_key AS customer_key,
         TRIM(cst_firstname) AS first_name,
         TRIM(cst_lastname)  AS last_name,
@@ -26,6 +26,7 @@ transformed_data AS (
         END AS gender,
         TO_CHAR(cst_create_date, 'YYYY-MM-DD') AS customer_create_date
     FROM raw_data
+    where customer_id is not null 
 )
 
 SELECT *

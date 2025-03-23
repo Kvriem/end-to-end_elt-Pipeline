@@ -1,0 +1,36 @@
+elt_pipeline:
+  target: dev_bronze
+  outputs:
+    dev_bronze:
+      type: snowflake
+      account: kv33652.europe_west4.gcp
+      user: KARIEMMONIEM
+      password: 2468Kariem
+      role: ACCOUNTADMIN
+      database: DBT_DB
+      warehouse: DBT_PROJECT
+      schema: BRONZE
+      threads: 4
+
+    dev_silver:
+      type: snowflake
+      account: kv33652.europe_west4.gcp
+      user: KARIEMMONIEM
+      password: 2468Kariem
+      role: ACCOUNTADMIN
+      database: DBT_DB
+      warehouse: DBT_PROJECT
+      schema: SILVER
+      threads: 4
+
+      
+    dev_gold:
+      type: snowflake
+      account: kv33652.europe_west4.gcp
+      user: KARIEMMONIEM
+      password: 2468Kariem
+      role: ACCOUNTADMIN
+      database: DBT_DB
+      warehouse: DBT_PROJECT
+      schema: GOLD
+      threads: 4
