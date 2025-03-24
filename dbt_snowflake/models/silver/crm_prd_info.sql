@@ -13,6 +13,7 @@ WITH raw_data AS (
 transformed_data AS (
     SELECT
         PRD_ID AS product_id,
+        REPLACE(SUBSTR(prd_key, 1, 5), '-', '_') AS category_id,
         PRD_KEY AS product_key,
         TRIM(PRD_NM) AS product_name,
         CAST(PRD_COST AS DECIMAL(10,2)) AS product_cost,

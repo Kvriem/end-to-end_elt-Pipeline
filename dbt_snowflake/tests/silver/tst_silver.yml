@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: crm_cust_info
+    description: "Test cases for CRM customer info table."
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+
+  - name: crm_prd_info
+    description: "Test cases for CRM product info table."
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+      - name: product_name
+        tests:
+          - not_null
+
+  - name: crm_sales_details
+    description: "Test cases for CRM sales details table."
+    columns:
+      - name: order_number
+        tests:
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+      - name: product_key
+        tests:
+          - not_null
+      - name: quantity
+        tests:
+          - not_null
+
+  - name: erp_cust_az12
+    description: "Test cases for ERP customer az12 table."
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+
+  - name: erp_loc_a101
+    description: "Test cases for ERP location a101 table."
+    columns:
+      - name: location_id
+        tests:
+          - not_null
+          - unique
+
+  - name: erp_px_cat_g1v2
+    description: "Test cases for ERP product category g1v2 table."
+    columns:
+      - name: category_id
+        tests:
+          - not_null
+          - unique

@@ -1,0 +1,77 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: Dimension table for customers merged from CRM and ERP.
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+
+      - name: customer_unique_key
+        tests:
+          - not_null
+
+
+  - name: dim_products
+    description: Dimension table for products enriched with category info from ERP.
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+      - name: product_number
+        tests:
+          - not_null
+      - name: product_name
+        tests:
+          - not_null
+
+  - name: dim_date
+    description: Date dimension table generated from order, ship, and due dates.
+    columns:
+      - name: date_key
+        tests:
+          - not_null
+          - unique
+      - name: date_value
+        tests:
+          - not_null
+
+  - name: fact_sales
+    description: Fact table containing sales transactions.
+    columns:
+      - name: order_number
+        tests:
+          - not_null
+          
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_id
+      - name: product_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_product')
+              field: product_number
+      - name: order_date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: ship_date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: due_date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
