@@ -12,7 +12,7 @@ WITH raw_data AS (
 transformed_data AS (
 
     SELECT
-        CID AS location_id,
+        CID AS customer_id,
         case 
         when TRIM(cntry) = 'US' or TRIM(cntry) = 'United States' 
             then 'USA'

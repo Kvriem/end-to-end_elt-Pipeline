@@ -15,11 +15,12 @@ with Dim_customer as(
             WHEN cust.gender ='n/a' THEN erp.gender
             ELSE cust.gender
         END AS gender,
-        erp.birth_date
+        erp.birth_date,
+        loc.city_name 
     FROM {{ref("crm_cust_info")}} AS cust
     LEFT JOIN {{ref("erp_cust_az12")}} AS erp 
         ON cust.customer_key = erp.customer_id
-    LEFT JOIN {{ref("erp_cust_az12")}}  AS loc 
+    LEFT JOIN {{ref("erp_loc_a101")}}  AS loc 
         ON cust.customer_key = loc.customer_id
 )
 select * from Dim_customer 
